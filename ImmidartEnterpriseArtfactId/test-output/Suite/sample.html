@@ -1,0 +1,124 @@
+<html>
+<head>
+<title>TestNG:  sample</title>
+<link href="../testng.css" rel="stylesheet" type="text/css" />
+<link href="../my-testng.css" rel="stylesheet" type="text/css" />
+
+<style type="text/css">
+.log { display: none;} 
+.stack-trace { display: none;} 
+</style>
+<script type="text/javascript">
+<!--
+function flip(e) {
+  current = e.style.display;
+  if (current == 'block') {
+    e.style.display = 'none';
+    return 0;
+  }
+  else {
+    e.style.display = 'block';
+    return 1;
+  }
+}
+
+function toggleBox(szDivId, elem, msg1, msg2)
+{
+  var res = -1;  if (document.getElementById) {
+    res = flip(document.getElementById(szDivId));
+  }
+  else if (document.all) {
+    // this is the way old msie versions work
+    res = flip(document.all[szDivId]);
+  }
+  if(elem) {
+    if(res == 0) elem.innerHTML = msg1; else elem.innerHTML = msg2;
+  }
+
+}
+
+function toggleAllBoxes() {
+  if (document.getElementsByTagName) {
+    d = document.getElementsByTagName('div');
+    for (i = 0; i < d.length; i++) {
+      if (d[i].className == 'log') {
+        flip(d[i]);
+      }
+    }
+  }
+}
+
+// -->
+</script>
+
+</head>
+<body>
+<h2 align='center'>sample</h2><table border='1' align="center">
+<tr>
+<td>Tests passed/Failed/Skipped:</td><td>9/0/0</td>
+</tr><tr>
+<td>Started on:</td><td>Thu Jul 05 15:47:33 IST 2018</td>
+</tr>
+<tr><td>Total time:</td><td>221 seconds (221810 ms)</td>
+</tr><tr>
+<td>Included groups:</td><td></td>
+</tr><tr>
+<td>Excluded groups:</td><td></td>
+</tr>
+</table><p/>
+<small><i>(Hover the method name to see the test class name)</i></small><p/>
+<table width='100%' border='1' class='invocation-passed'>
+<tr><td colspan='4' align='center'><b>PASSED TESTS</b></td></tr>
+<tr><td><b>Test method</b></td>
+<td width="30%"><b>Exception</b></td>
+<td width="10%"><b>Time (seconds)</b></td>
+<td><b>Instance</b></td>
+</tr>
+<tr>
+<td title='admin.SystemSettings.addAssignmentRole()'><b>addAssignmentRole</b><br>Test class: admin.SystemSettings<br>Parameters: Assignment Role1</td>
+<td></td>
+<td>21</td>
+<td>admin.SystemSettings@6385cb26</td></tr>
+<tr>
+<td title='admin.SystemSettings.addAssignmentRole()'><b>addAssignmentRole</b><br>Test class: admin.SystemSettings<br>Parameters: Assignment Role2</td>
+<td></td>
+<td>18</td>
+<td>admin.SystemSettings@6385cb26</td></tr>
+<tr>
+<td title='admin.SystemSettings.addImmigrationRole()'><b>addImmigrationRole</b><br>Test class: admin.SystemSettings<br>Parameters: Immigration Role1</td>
+<td></td>
+<td>20</td>
+<td>admin.SystemSettings@6385cb26</td></tr>
+<tr>
+<td title='admin.SystemSettings.addImmigrationRole()'><b>addImmigrationRole</b><br>Test class: admin.SystemSettings<br>Parameters: Immigration Role2</td>
+<td></td>
+<td>18</td>
+<td>admin.SystemSettings@6385cb26</td></tr>
+<tr>
+<td title='admin.SystemSettings.addMasterLegalForm()'><b>addMasterLegalForm</b><br>Test class: admin.SystemSettings<br>Parameters: Masterform name, Master form description, C:\Users\dinesh.r\Desktop\Automation\EnterpriseTestData\4FA21E28-7B11-40CD-8DAB-A8429E952CDC-100021000000000053.pdf, C:\Users\dinesh.r\Desktop\Automation\EnterpriseTestData\4FA21E28-7B11-40CD-8DAB-A8429E952CDC-100021000000000053.pdf</td>
+<td></td>
+<td>26</td>
+<td>admin.SystemSettings@6385cb26</td></tr>
+<tr>
+<td title='admin.Configuration.assignmentImmigrationRoleMapping()'><b>assignmentImmigrationRoleMapping</b><br>Test class: admin.Configuration<br>Parameters: Assignment Role1, Immigration Role1,Immigration Role2</td>
+<td></td>
+<td>24</td>
+<td>admin.Configuration@49070868</td></tr>
+<tr>
+<td title='admin.Configuration.countryAssignmentRole()'><b>countryAssignmentRole</b><br>Test class: admin.Configuration<br>Parameters: United States, Assignment Role1,Assignment Role2</td>
+<td></td>
+<td>24</td>
+<td>admin.Configuration@49070868</td></tr>
+<tr>
+<td title='admin.Configuration.countryImmigrationRole()'><b>countryImmigrationRole</b><br>Test class: admin.Configuration<br>Parameters: United States, Immigration Role1,Immigration Role2</td>
+<td></td>
+<td>32</td>
+<td>admin.Configuration@49070868</td></tr>
+<tr>
+<td title='admin.Configuration.countryTypeForm()'><b>countryTypeForm</b><br>Test class: admin.Configuration<br>Parameters: India, United States, Long-Term Transfers, L Permit, Masterform name, Beneficiary,Spouse</td>
+<td></td>
+<td>27</td>
+<td>admin.Configuration@49070868</td></tr>
+</table><p>
+</body>
+</html>
