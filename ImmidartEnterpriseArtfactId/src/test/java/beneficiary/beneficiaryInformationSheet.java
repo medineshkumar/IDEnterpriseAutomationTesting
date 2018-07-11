@@ -11,13 +11,25 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
 import genericClasses.Browser;
 import genericClasses.Login;
 import pages.beneficiaryInitiationPage;
 import pages.beneficiaryLandingPage;
 import pages.beneficiaryMyProfilePage;
+import testData.createBeneficiaryAddressData;
+import testData.createBeneficiaryExperienceData;
+import testData.createBeneficiaryImmigrationData;
+import testData.createBeneficiaryOrganizationData;
+import testData.createBeneficiaryPassportData;
+import testData.createBeneficiaryPersonalData;
+import testData.createBeneficiaryQualificationData;
+import testData.createBeneficiaryTravelData;
+import testData.createBeneficiaryWorkVisaData;
 
 public class beneficiaryInformationSheet {
 
@@ -25,9 +37,17 @@ public class beneficiaryInformationSheet {
 
 	String appURL = "http://10.10.10.101/EnterpriseQA/";
 	
-	@Test(enabled=true, priority = 1)
-	public void createOrganization() throws InterruptedException {
+	@Test(enabled = false, dataProvider = "createOrganization", dataProviderClass = createBeneficiaryOrganizationData.class, priority = 1)
+	public void createOrganization(String OrgcarrerBand, String CurrentDesignation, String OrganizationName,
+			String OrganizationCode, String Division, String Subdivision, String businessDivision,
+			String businessSubDivision, String Domain, String DateofJoining, String ExperienceWithCurrentEmp,
+			String OverAllExp, String RelevantExp, String ContactNo, String CurrentWorkLocation,
+			String CurrentWorkAddress, String EmploymentType, String ReportingManager) throws InterruptedException {
+		
+		
 		driver = Browser.startBrowser("chrome", appURL);
+		
+		WebDriverWait wait = new WebDriverWait(driver, 30);
 
 		Login loginObj = new Login(driver);
 
@@ -36,101 +56,117 @@ public class beneficiaryInformationSheet {
 		Thread.sleep(2000);
 
 		beneficiaryLandingPage benLandingPageObj = PageFactory.initElements(driver, beneficiaryLandingPage.class);
-		beneficiaryMyProfilePage beneficiaryMyProfilePageObj = PageFactory.initElements(driver,beneficiaryMyProfilePage.class);
+		beneficiaryMyProfilePage beneficiaryMyProfilePageObj = PageFactory.initElements(driver,
+				beneficiaryMyProfilePage.class);
 
 		benLandingPageObj.myProfileSetting_Dashboard.click();
 		Thread.sleep(1500);
 		beneficiaryMyProfilePageObj.myProfileMenu.click();
 		Thread.sleep(1500);
 		beneficiaryMyProfilePageObj.informationSheetSubMenu.click();
-		
-		Thread.sleep(2000);	
-		
+
+		Thread.sleep(2000);
+
 		beneficiaryMyProfilePageObj.organizationSetting.click();
-		
+
 		Thread.sleep(1500);
-		
+
 		beneficiaryMyProfilePageObj.editOrganization.click();
+
+		Thread.sleep(2000);
+
+		beneficiaryMyProfilePageObj.organizationCareerBand_OrganizationSetting.sendKeys(OrgcarrerBand);
+
+		beneficiaryMyProfilePageObj.currentDesignation_OrganizationSetting.sendKeys(CurrentDesignation);
+
+		beneficiaryMyProfilePageObj.organizationName_OrganizationSetting.sendKeys(OrganizationName);
+
+		beneficiaryMyProfilePageObj.organizationCode_OrganizationSetting.sendKeys(OrganizationCode);
+
+		beneficiaryMyProfilePageObj.division_OrganizationSetting.sendKeys(Division);
+
+		beneficiaryMyProfilePageObj.subDivision_OrganizationSetting.sendKeys(Subdivision);
+
+		beneficiaryMyProfilePageObj.businessDivision_OrganizationSetting.sendKeys(businessDivision);
+
+		beneficiaryMyProfilePageObj.businessSubDivision_OrganizationSetting.sendKeys(businessSubDivision);
+
+		beneficiaryMyProfilePageObj.domain_OrganizationSetting.sendKeys(Domain);
+
+		beneficiaryMyProfilePageObj.dateOfJoining_OrganizationSetting.click();
+		JavascriptExecutor doj = (JavascriptExecutor) driver;
+		doj.executeScript("document.getElementById('DateOfJoining').value='"+DateofJoining+"';");
+
+		beneficiaryMyProfilePageObj.currentExperience_OrganizationSetting.sendKeys(ExperienceWithCurrentEmp);
+
+		beneficiaryMyProfilePageObj.overAll_OrganizationSetting.sendKeys(OverAllExp);
+
+		beneficiaryMyProfilePageObj.relevantExperience_OrganizationSetting.sendKeys(RelevantExp);
+
+		// Write code for selecting country code.
+
+		JavascriptExecutor contactNoFocus = (JavascriptExecutor) driver;
+		contactNoFocus.executeScript("arguments[0].scrollIntoView(false);",
+				beneficiaryMyProfilePageObj.contactNumber_OrganizationSetting);
+
+		Thread.sleep(1500);
+
+		Actions flagSelector = new Actions(driver);
+		flagSelector.moveToElement(driver.findElement(By.xpath("//div[@class='flag-container']"))).click()
+				.sendKeys("India", Keys.ENTER).build().perform();
+
+		Thread.sleep(1000);
+
+		beneficiaryMyProfilePageObj.contactNumber_OrganizationSetting.sendKeys(ContactNo);
+
+		JavascriptExecutor currentWorkLocationFocus = (JavascriptExecutor) driver;
+		currentWorkLocationFocus.executeScript("arguments[0].scrollIntoView(false);",
+				beneficiaryMyProfilePageObj.contactNumber_OrganizationSetting);
+
+		Thread.sleep(1500);
+
+		beneficiaryMyProfilePageObj.currentWorkLocation_OrganizationSetting.sendKeys(CurrentWorkLocation);
+
+		JavascriptExecutor currentWorkAddressFocus = (JavascriptExecutor) driver;
+		currentWorkAddressFocus.executeScript("arguments[0].scrollIntoView(false);",
+				beneficiaryMyProfilePageObj.currentWorkAddress_OrganizationSetting);
+
+		Thread.sleep(1500);
+
+		beneficiaryMyProfilePageObj.currentWorkAddress_OrganizationSetting.sendKeys(CurrentWorkAddress);
+
+		JavascriptExecutor reportingManagerFocus = (JavascriptExecutor) driver;
+		reportingManagerFocus.executeScript("arguments[0].scrollIntoView(false);",
+				beneficiaryMyProfilePageObj.reportingManager_OrganizationSetting);
+
+		Thread.sleep(1500);
+
+		// beneficiaryMyProfilePageObj.employmentTypeDropDown_OrganizationSetting.click();
+
+		beneficiaryMyProfilePageObj.reportingManager_OrganizationSetting.sendKeys(ReportingManager);
+
+		JavascriptExecutor SaveBtnFocus = (JavascriptExecutor) driver;
+		SaveBtnFocus.executeScript("arguments[0].scrollIntoView(false);",
+				beneficiaryMyProfilePageObj.saveBtn_OrganizationSetting);
+
+		Thread.sleep(1500);
+
+		// beneficiaryMyProfilePageObj.saveBtn_OrganizationSetting.click();
 		
 		Thread.sleep(2000);
 		
-		beneficiaryMyProfilePageObj.organizationCareerBand_OrganizationSetting.sendKeys("organization career band");
+		wait.until(ExpectedConditions.invisibilityOf(driver.findElement(By.xpath("//div[contains(@id,'toast-container')]"))));
 		
-		beneficiaryMyProfilePageObj.currentDesignation_OrganizationSetting.sendKeys("current designation");
-		
-		beneficiaryMyProfilePageObj.organizationName_OrganizationSetting.sendKeys("organization name");
-		
-		beneficiaryMyProfilePageObj.organizationCode_OrganizationSetting.sendKeys("organization code");
-		
-		beneficiaryMyProfilePageObj.division_OrganizationSetting.sendKeys("division");
-		
-		beneficiaryMyProfilePageObj.subDivision_OrganizationSetting.sendKeys("sub division");
-		
-		beneficiaryMyProfilePageObj.businessDivision_OrganizationSetting.sendKeys("business division");
-		
-		beneficiaryMyProfilePageObj.businessSubDivision_OrganizationSetting.sendKeys("business sub division");
-		
-		beneficiaryMyProfilePageObj.domain_OrganizationSetting.sendKeys("domain");
-		
-		beneficiaryMyProfilePageObj.dateOfJoining_OrganizationSetting.click();		
-		JavascriptExecutor doj = (JavascriptExecutor) driver;
-		doj.executeScript("document.getElementById('DateOfJoining').value='02/01/2018';");
-		
-		beneficiaryMyProfilePageObj.currentExperience_OrganizationSetting.sendKeys("12");
-		
-		beneficiaryMyProfilePageObj.overAll_OrganizationSetting.sendKeys("36");
-		
-		beneficiaryMyProfilePageObj.relevantExperience_OrganizationSetting.sendKeys("24");
-		
-		// Write code for selecting country code.
-		
-		JavascriptExecutor contactNoFocus = (JavascriptExecutor) driver;
-		contactNoFocus.executeScript("arguments[0].scrollIntoView(false);", beneficiaryMyProfilePageObj.contactNumber_OrganizationSetting);
-		
-		Thread.sleep(1500);
-		
-		Actions flagSelector = new Actions(driver);
-		flagSelector.moveToElement(driver.findElement(By.xpath("//div[@class='flag-container']"))).click().sendKeys("India",Keys.ENTER).build().perform();
-		
-		Thread.sleep(1000);
-		
-		beneficiaryMyProfilePageObj.contactNumber_OrganizationSetting.sendKeys("9844748783");
-		
-		JavascriptExecutor currentWorkLocationFocus = (JavascriptExecutor) driver;
-		currentWorkLocationFocus.executeScript("arguments[0].scrollIntoView(false);", beneficiaryMyProfilePageObj.contactNumber_OrganizationSetting);
-		
-		Thread.sleep(1500);
-		
-		beneficiaryMyProfilePageObj.currentWorkLocation_OrganizationSetting.sendKeys("bangalore");
-		
-		JavascriptExecutor currentWorkAddressFocus = (JavascriptExecutor) driver;
-		currentWorkAddressFocus.executeScript("arguments[0].scrollIntoView(false);", beneficiaryMyProfilePageObj.currentWorkAddress_OrganizationSetting);
-		
-		Thread.sleep(1500);
-		
-		beneficiaryMyProfilePageObj.currentWorkAddress_OrganizationSetting.sendKeys("bangalore india");
-		
-		JavascriptExecutor reportingManagerFocus = (JavascriptExecutor) driver;
-		reportingManagerFocus.executeScript("arguments[0].scrollIntoView(false);", beneficiaryMyProfilePageObj.reportingManager_OrganizationSetting);
-		
-		Thread.sleep(1500);
-		
-		//beneficiaryMyProfilePageObj.employmentTypeDropDown_OrganizationSetting.click();
-		
-		beneficiaryMyProfilePageObj.reportingManager_OrganizationSetting.sendKeys("reporting");
-
-		JavascriptExecutor SaveBtnFocus = (JavascriptExecutor) driver;
-		SaveBtnFocus.executeScript("arguments[0].scrollIntoView(false);", beneficiaryMyProfilePageObj.saveBtn_OrganizationSetting);
-		
-		Thread.sleep(1500);
-		
-		//beneficiaryMyProfilePageObj.saveBtn_OrganizationSetting.click();
+		loginObj.logOut();
 	}
-	
-	@Test(enabled=true, priority = 2)
-	public void createPersonalInformation() throws InterruptedException {
+
+	@Test(enabled=false, dataProvider="createPersonal",dataProviderClass= createBeneficiaryPersonalData.class, priority = 2)
+	public void createPersonalInformation(String Fname,String Mname,String Lname,String DOB,String placeOfBirth,String countryOfBirth
+			,String stateOfBirth,String maritalStatus, String personalEmailID,String altEmailID,String contactNo,String altContactNo,String gender) throws InterruptedException {
 
 		driver = Browser.startBrowser("chrome", appURL);
+		
+		WebDriverWait wait = new WebDriverWait(driver, 30);
 
 		Login loginObj = new Login(driver);
 
@@ -156,55 +192,67 @@ public class beneficiaryInformationSheet {
 		
 		Thread.sleep(2000);
 		
-		beneficiaryMyProfilePageObj.firstName_PersonalSetting.sendKeys("first name");
-		beneficiaryMyProfilePageObj.middleName_PersonalSetting.sendKeys("middle name");
-		beneficiaryMyProfilePageObj.lastName_PersonalSetting.sendKeys("last name");
+		beneficiaryMyProfilePageObj.firstName_PersonalSetting.sendKeys(Fname);
+		beneficiaryMyProfilePageObj.middleName_PersonalSetting.sendKeys(Mname);
+		beneficiaryMyProfilePageObj.lastName_PersonalSetting.sendKeys(Lname);
 		
 		beneficiaryMyProfilePageObj.dateOfBirth_PersonalSetting.click();
 		JavascriptExecutor dob = (JavascriptExecutor) driver;
-		dob.executeScript("document.getElementById('DateOfBirth').value='02/01/2018';");		
+		dob.executeScript("document.getElementById('DateOfBirth').value='"+DOB+"';");		
 		
 		
 		beneficiaryMyProfilePageObj.placeOfBirth_PersonalSetting.click();
-		beneficiaryMyProfilePageObj.placeOfBirth_PersonalSetting.sendKeys("Bangalore");
+		beneficiaryMyProfilePageObj.placeOfBirth_PersonalSetting.sendKeys(placeOfBirth);
 		
-		Actions countryOfBirth = new Actions(driver);
-		countryOfBirth.moveToElement(beneficiaryMyProfilePageObj.countryOfBirthDropDown_PersonalSetting).click().sendKeys("india",Keys.ARROW_DOWN,Keys.ENTER).build().perform();
-		
-		Thread.sleep(1500);
-		
-		Actions stateOfBirth = new Actions(driver);
-		stateOfBirth.moveToElement(beneficiaryMyProfilePageObj.stateOfBirthDropDown_PersonalSetting).click().sendKeys("karnataka",Keys.ARROW_DOWN,Keys.ENTER).build().perform();;
+		Actions countryofBirth = new Actions(driver);
+		countryofBirth.moveToElement(beneficiaryMyProfilePageObj.countryOfBirthDropDown_PersonalSetting).click().sendKeys(countryOfBirth,Keys.ARROW_DOWN,Keys.ENTER).build().perform();
 		
 		Thread.sleep(1500);
 		
-		Actions maritalStatus = new Actions(driver);
-		maritalStatus.moveToElement(beneficiaryMyProfilePageObj.martialStatus_PersonalSetting).click().sendKeys("single",Keys.ARROW_DOWN,Keys.ENTER).build().perform();
+		Actions stateofBirth = new Actions(driver);
+		stateofBirth.moveToElement(beneficiaryMyProfilePageObj.stateOfBirthDropDown_PersonalSetting).click().sendKeys(stateOfBirth,Keys.ARROW_DOWN,Keys.ENTER).build().perform();;
 		
-		beneficiaryMyProfilePageObj.personalEmailID_PersonalSetting.sendKeys("pesonal@email.com");
+		Thread.sleep(1500);
 		
-		beneficiaryMyProfilePageObj.alternateEmailID_PersonalSetting.sendKeys("altpersonal@email.com");
+		Actions marital = new Actions(driver);
+		marital.moveToElement(beneficiaryMyProfilePageObj.martialStatus_PersonalSetting).click().sendKeys(maritalStatus,Keys.ARROW_DOWN,Keys.ENTER).build().perform();
+		
+		beneficiaryMyProfilePageObj.personalEmailID_PersonalSetting.sendKeys(personalEmailID);
+		
+		beneficiaryMyProfilePageObj.alternateEmailID_PersonalSetting.sendKeys(altEmailID);
 		
 		Actions flagSelector = new Actions(driver);
 		flagSelector.moveToElement(driver.findElement(By.xpath("//div[@class='flag-container']"))).click().sendKeys("India",Keys.ENTER).build().perform();
 		
 		Thread.sleep(1000);
 		
-		beneficiaryMyProfilePageObj.contactNumber_PersonalSetting.sendKeys("9844748783");
+		beneficiaryMyProfilePageObj.contactNumber_PersonalSetting.sendKeys(contactNo);
 		
-		beneficiaryMyProfilePageObj.alternateNumber_PersonalSetting.sendKeys("9844748783");
+		beneficiaryMyProfilePageObj.alternateNumber_PersonalSetting.sendKeys(altContactNo);
 		
-		Actions gender = new Actions(driver);
-		gender.moveToElement(beneficiaryMyProfilePageObj.gender_PersonalSetting).click().sendKeys("male",Keys.ENTER);
+		Actions Gender = new Actions(driver);
+		Gender.moveToElement(beneficiaryMyProfilePageObj.gender_PersonalSetting).click().sendKeys(gender,Keys.ENTER);
+		
+		//beneficiaryMyProfilePageObj.saveBtn_PersonalSetting.click();
+		
+		
+		Thread.sleep(2000);
+		
+		wait.until(ExpectedConditions.invisibilityOf(driver.findElement(By.xpath("//div[contains(@id,'toast-container')]"))));
+		
+		loginObj.logOut();
+		
 			
 		
 	}
 	
-	@Test(enabled=true, priority = 3)
-	public void createAddress() throws InterruptedException {
+	@Test(enabled=false,dataProvider="createAddress",dataProviderClass=createBeneficiaryAddressData.class , priority = 3)
+	public void createAddress(String AddressLine1,String AddressLine2,String Country,String State,String City,String PostalCode,String isPermSame,String isEmgSame) throws InterruptedException {
 		driver = Browser.startBrowser("chrome", appURL);
 
 		Login loginObj = new Login(driver);
+		
+		WebDriverWait wait = new WebDriverWait(driver, 30);
 
 		loginObj.beneficiaryLogin();
 
@@ -227,28 +275,28 @@ public class beneficiaryInformationSheet {
 		beneficiaryMyProfilePageObj.addAddressBtn_AddressSetting.click();
 		Thread.sleep(1500);
 		
-		beneficiaryMyProfilePageObj.currentAddressLine1_AddressSetting.sendKeys("address line 1");
-		beneficiaryMyProfilePageObj.currentAddressLine2_AddressSetting.sendKeys("address line 2");
+		beneficiaryMyProfilePageObj.currentAddressLine1_AddressSetting.sendKeys(AddressLine1);
+		beneficiaryMyProfilePageObj.currentAddressLine2_AddressSetting.sendKeys(AddressLine2);
 		
 		Actions country = new Actions(driver);
-		country.moveToElement(beneficiaryMyProfilePageObj.currentAddressCountryDropDown_AddressSetting).click().sendKeys("india",Keys.ARROW_DOWN,Keys.ENTER).build().perform();
+		country.moveToElement(beneficiaryMyProfilePageObj.currentAddressCountryDropDown_AddressSetting).click().sendKeys(Country,Keys.ARROW_DOWN,Keys.ENTER).build().perform();
 		
 		Thread.sleep(1500);
 		
 		Actions state = new Actions(driver);
-		state.moveToElement(beneficiaryMyProfilePageObj.currentAddressStateDropDown_AddressSetting).click().sendKeys("karnataka",Keys.ARROW_DOWN,Keys.ENTER).build().perform();;
+		state.moveToElement(beneficiaryMyProfilePageObj.currentAddressStateDropDown_AddressSetting).click().sendKeys(State,Keys.ARROW_DOWN,Keys.ENTER).build().perform();;
 		
 		Thread.sleep(1500);
 		
 		Actions city = new Actions(driver);
-		city.moveToElement(beneficiaryMyProfilePageObj.currentAddressCityDropDown_AddressSetting).click().sendKeys("bangalore",Keys.ARROW_DOWN,Keys.ENTER).build().perform();;
+		city.moveToElement(beneficiaryMyProfilePageObj.currentAddressCityDropDown_AddressSetting).click().sendKeys(City,Keys.ARROW_DOWN,Keys.ENTER).build().perform();;
 		
 		Thread.sleep(1000);
 		
-		beneficiaryMyProfilePageObj.currentAddressPostalCode_AddressSetting.sendKeys("456123");
+		beneficiaryMyProfilePageObj.currentAddressPostalCode_AddressSetting.sendKeys(PostalCode);
 		
 		Select isPermanentSame = new Select(beneficiaryMyProfilePageObj.isPermanentAddressDropDown_AddressSetting);
-		isPermanentSame.selectByVisibleText("Yes");
+		isPermanentSame.selectByVisibleText(isPermSame);
 		
 		JavascriptExecutor IsEmergencySameFocus = (JavascriptExecutor) driver;
 		IsEmergencySameFocus.executeScript("arguments[0].scrollIntoView(false);", beneficiaryMyProfilePageObj.isEmergencyAddressDropDown_AddressSetting);
@@ -256,7 +304,7 @@ public class beneficiaryInformationSheet {
 		Thread.sleep(1500);
 		
 		Select isEmergency = new Select(beneficiaryMyProfilePageObj.isEmergencyAddressDropDown_AddressSetting);
-		isEmergency.selectByVisibleText("Yes");
+		isEmergency.selectByVisibleText(isEmgSame);
 
 		Thread.sleep(1000);
 		
@@ -266,14 +314,23 @@ public class beneficiaryInformationSheet {
 		Thread.sleep(1500);
 		
 		//beneficiaryMyProfilePageObj.saveBtn_AddressSetting.click();
+		
+		Thread.sleep(2000);
+		
+		wait.until(ExpectedConditions.invisibilityOf(driver.findElement(By.xpath("//div[contains(@id,'toast-container')]"))));
+		
+		loginObj.logOut();
 				
 	}
 	
-	@Test(enabled=true, priority = 4)
-	public void createQualification() throws InterruptedException {
+	@Test(enabled=false, dataProvider="createQualification",dataProviderClass= createBeneficiaryQualificationData.class,priority = 4)
+	public void createQualification(String EducationCategory, String Degree,String BoardUniversity,String InstituteName,
+			String YearofStart,String YearofPassing,String PercentageGrade,String ModeofEducation,String MajorFieldofstudy,String Country,String State,String City) throws InterruptedException {
 		driver = Browser.startBrowser("chrome", appURL);
 
 		Login loginObj = new Login(driver);
+		
+		WebDriverWait wait = new WebDriverWait(driver, 30);
 
 		loginObj.beneficiaryLogin();
 
@@ -299,50 +356,59 @@ public class beneficiaryInformationSheet {
 		Thread.sleep(2000);
 		
 		Actions educationCategory = new Actions(driver);
-		educationCategory.moveToElement(beneficiaryMyProfilePageObj.educationCategoryDropdown_QualificationSetting).click().sendKeys("").build().perform();
+		educationCategory.moveToElement(beneficiaryMyProfilePageObj.educationCategoryDropdown_QualificationSetting).click().sendKeys(EducationCategory).build().perform();
 		
 		Thread.sleep(1500);
 		
 		Actions degree = new Actions(driver);
-		degree.moveToElement(beneficiaryMyProfilePageObj.degreeDropDown_QualificationSetting).click().sendKeys("").build().perform();
+		degree.moveToElement(beneficiaryMyProfilePageObj.degreeDropDown_QualificationSetting).click().sendKeys(Degree).build().perform();
 		
 		Thread.sleep(1500);
 		
-		beneficiaryMyProfilePageObj.boardUniversityName_QualificationSetting.sendKeys("");
+		beneficiaryMyProfilePageObj.boardUniversityName_QualificationSetting.sendKeys(BoardUniversity);
 		
-		beneficiaryMyProfilePageObj.instituteName_QualificationSetting.sendKeys("");
+		beneficiaryMyProfilePageObj.instituteName_QualificationSetting.sendKeys(InstituteName);
 		
 		beneficiaryMyProfilePageObj.yearOfStart_QualificationSetting.click();
-		beneficiaryMyProfilePageObj.yearOfStart_QualificationSetting.sendKeys("",Keys.ENTER);
+		beneficiaryMyProfilePageObj.yearOfStart_QualificationSetting.sendKeys(YearofStart,Keys.ENTER);
 		
 		beneficiaryMyProfilePageObj.yearOfPassing_QualificationSetting.click();
-		beneficiaryMyProfilePageObj.yearOfPassing_QualificationSetting.sendKeys("",Keys.ENTER);
+		beneficiaryMyProfilePageObj.yearOfPassing_QualificationSetting.sendKeys(YearofPassing,Keys.ENTER);
 		
-		beneficiaryMyProfilePageObj.percentageGrade_QualificationSetting.sendKeys("");
+		beneficiaryMyProfilePageObj.percentageGrade_QualificationSetting.sendKeys(PercentageGrade);
 		
 		Actions modeOfEducation = new Actions(driver);
-		modeOfEducation.moveToElement(beneficiaryMyProfilePageObj.modeOfEducationDropDown_QualificationSetting).click().sendKeys("",Keys.ARROW_DOWN,Keys.ENTER).build().perform();
+		modeOfEducation.moveToElement(beneficiaryMyProfilePageObj.modeOfEducationDropDown_QualificationSetting).click().sendKeys(ModeofEducation,Keys.ARROW_DOWN,Keys.ENTER).build().perform();
 		
-		beneficiaryMyProfilePageObj.majorFieldOfStudy_QualificationSetting.sendKeys("");
+		beneficiaryMyProfilePageObj.majorFieldOfStudy_QualificationSetting.sendKeys(MajorFieldofstudy);
 		
 		Actions country = new Actions(driver);
-		country.moveToElement(beneficiaryMyProfilePageObj.countryDropDown_QualificationSetting).click().sendKeys("",Keys.ARROW_DOWN,Keys.ENTER);
+		country.moveToElement(beneficiaryMyProfilePageObj.countryDropDown_QualificationSetting).click().sendKeys(Country,Keys.ARROW_DOWN,Keys.ENTER);
 		
 		Actions state = new Actions(driver);
-		state.moveToElement(beneficiaryMyProfilePageObj.StateDropDown_QualificationSetting).click().sendKeys("",Keys.ARROW_DOWN,Keys.ENTER);
+		state.moveToElement(beneficiaryMyProfilePageObj.StateDropDown_QualificationSetting).click().sendKeys(State,Keys.ARROW_DOWN,Keys.ENTER);
 		
 		Actions city = new Actions(driver);
-		city.moveToElement(beneficiaryMyProfilePageObj.cityDropDown_QualificationSetting).click().sendKeys("",Keys.ARROW_DOWN,Keys.ENTER);
+		city.moveToElement(beneficiaryMyProfilePageObj.cityDropDown_QualificationSetting).click().sendKeys(City,Keys.ARROW_DOWN,Keys.ENTER);
 	
 		//beneficiaryMyProfilePageObj.saveBtn_QualificationSetting.click();
 		
+		Thread.sleep(2000);
+		
+		wait.until(ExpectedConditions.invisibilityOf(driver.findElement(By.xpath("//div[contains(@id,'toast-container')]"))));
+		
+		loginObj.logOut();
+		
 	}
 	
-	@Test(enabled=true, priority = 5)
-	public void createPassport1() throws InterruptedException {
+	@Test(enabled=false,dataProvider="createPassport",dataProviderClass= createBeneficiaryPassportData.class, priority = 5)
+	public void createPassport(String PassportNo,String Surname,String GivenName,String Nationality,String PlaceofIssue,
+			String DateofIssue,String DateofExpiry,String ECNR,String PassportActive) throws InterruptedException {
 		driver = Browser.startBrowser("chrome", appURL);
 
 		Login loginObj = new Login(driver);
+		
+		WebDriverWait wait = new WebDriverWait(driver, 30);
 
 		loginObj.beneficiaryLogin();
 
@@ -367,49 +433,58 @@ public class beneficiaryInformationSheet {
 		
 		Thread.sleep(2000);
 		
-		beneficiaryMyProfilePageObj.passportNo_PassportSetting.sendKeys("25236525");
+		beneficiaryMyProfilePageObj.passportNo_PassportSetting.sendKeys(PassportNo);
 		
-		beneficiaryMyProfilePageObj.surname_PassportSetting.sendKeys("surname");
+		beneficiaryMyProfilePageObj.surname_PassportSetting.sendKeys(Surname);
 		
-		beneficiaryMyProfilePageObj.givenName_PassportSetting.sendKeys("givenname");
+		beneficiaryMyProfilePageObj.givenName_PassportSetting.sendKeys(GivenName);
 		
 		Actions nationality = new Actions(driver);
-		nationality.moveToElement(beneficiaryMyProfilePageObj.nationalityDropDown_PassportSetting).click().sendKeys("india",Keys.ARROW_DOWN,Keys.ENTER).build().perform();
+		nationality.moveToElement(beneficiaryMyProfilePageObj.nationalityDropDown_PassportSetting).click().sendKeys(Nationality,Keys.ARROW_DOWN,Keys.ENTER).build().perform();
 		
-		beneficiaryMyProfilePageObj.placeOfIssue_PassportSetting.sendKeys("bangalore");
+		beneficiaryMyProfilePageObj.placeOfIssue_PassportSetting.sendKeys(PlaceofIssue);
 		
 		beneficiaryMyProfilePageObj.dateOfIssue_PassportSetting.click();
 		JavascriptExecutor doi = (JavascriptExecutor) driver;
-		doi.executeScript("document.getElementById('DateOfIssue').value='02/01/2018';");
+		doi.executeScript("document.getElementById('DateOfIssue').value='"+DateofIssue+"';");
 		
 		Thread.sleep(1000);
 		
 		beneficiaryMyProfilePageObj.dateOfExpiry_PassportSetting.click();
 		JavascriptExecutor doe = (JavascriptExecutor) driver;
-		doe.executeScript("document.getElementById('DateOfExpiry').value='02/01/2019';");
+		doe.executeScript("document.getElementById('DateOfExpiry').value='"+DateofExpiry+"';");
 		
 		Thread.sleep(1000);
 		
 		beneficiaryMyProfilePageObj.placeOfIssue_PassportSetting.click();
 		
 		Select ecnr = new Select(beneficiaryMyProfilePageObj.ecnrRequirement_PassportSetting);
-		ecnr.selectByVisibleText("No");
+		ecnr.selectByVisibleText(ECNR);
 		
 		Thread.sleep(1000);
 		
 		Select passportActive = new Select(beneficiaryMyProfilePageObj.passportActive_PassportSetting);
-		passportActive.selectByVisibleText("Yes");
+		passportActive.selectByVisibleText(PassportActive);
 		
 		Thread.sleep(1000);
 		
 		//beneficiaryMyProfilePageObj.saveBtn_PassportSetting.click();
 		
+		Thread.sleep(2000);
+		
+		wait.until(ExpectedConditions.invisibilityOf(driver.findElement(By.xpath("//div[contains(@id,'toast-container')]"))));
+		
+		loginObj.logOut();
+		
 	}
 	
-	@Test(enabled=true, priority = 6)
-	public void createWorkVisa() throws InterruptedException {
+	@Test(enabled=false, dataProvider="createWorkVisa",dataProviderClass= createBeneficiaryWorkVisaData.class,priority = 6)
+	public void createWorkVisa(String Country,String Sponsorer,String VisaType,String VisaDescription,String Status,String WorkPermitStartDate,
+			String WorkPermitEndDate,String WorkPermitNumber,String VisaStartDate,String VisaEndDate,String DeregistrationDate,String AdditionalInformation) throws InterruptedException {
 		
 		driver = Browser.startBrowser("chrome", appURL);
+		
+		WebDriverWait wait = new WebDriverWait(driver, 30);
 
 		Login loginObj = new Login(driver);
 
@@ -436,68 +511,77 @@ public class beneficiaryInformationSheet {
 		Thread.sleep(2000);
 		
 		Actions country = new Actions(driver);
-		country.moveToElement(beneficiaryMyProfilePageObj.countryDropDown_WorkVisaSetting).click().sendKeys("india",Keys.ARROW_DOWN,Keys.ENTER).build().perform();
+		country.moveToElement(beneficiaryMyProfilePageObj.countryDropDown_WorkVisaSetting).click().sendKeys(Country,Keys.ARROW_DOWN,Keys.ENTER).build().perform();
 		
 		Thread.sleep(1500);
 		
-		beneficiaryMyProfilePageObj.sponsorer_WorkVisaSetting.sendKeys("sponsorer");
+		beneficiaryMyProfilePageObj.sponsorer_WorkVisaSetting.sendKeys(Sponsorer);
 		
 		Actions visaType = new Actions(driver);
-		visaType.moveToElement(beneficiaryMyProfilePageObj.visaType_WorkVisaSetting).click().sendKeys("other",Keys.ARROW_DOWN,Keys.ENTER).build().perform();
+		visaType.moveToElement(beneficiaryMyProfilePageObj.visaType_WorkVisaSetting).click().sendKeys(VisaType,Keys.ARROW_DOWN,Keys.ENTER).build().perform();
 		
 		Thread.sleep(1500);
 		
-		beneficiaryMyProfilePageObj.visaDescription_WorkVisaSetting.sendKeys("Visa description");
+		beneficiaryMyProfilePageObj.visaDescription_WorkVisaSetting.sendKeys(VisaDescription);
 		
 		Thread.sleep(1000);
 		
 		Actions status = new Actions(driver);
-		status.moveToElement(beneficiaryMyProfilePageObj.status_WorkVisaSetting).click().sendKeys("active",Keys.ARROW_DOWN,Keys.ENTER).build().perform();
+		status.moveToElement(beneficiaryMyProfilePageObj.status_WorkVisaSetting).click().sendKeys(Status,Keys.ARROW_DOWN,Keys.ENTER).build().perform();
 		
 		Thread.sleep(1000);
 		beneficiaryMyProfilePageObj.workPermitStartDate_WorkVisaSetting.click();
 		JavascriptExecutor wps = (JavascriptExecutor) driver;
-		wps.executeScript("document.getElementById('WorkPermitStartDate').value='02/01/2018';");
+		wps.executeScript("document.getElementById('WorkPermitStartDate').value='"+WorkPermitStartDate+"';");
 		
 		Thread.sleep(1000);		
 		beneficiaryMyProfilePageObj.workPermitEndDate_WorkVisaSetting.click();
 		JavascriptExecutor wpe = (JavascriptExecutor) driver;
-		wpe.executeScript("document.getElementById('WorkPermitEndDate').value='02/01/2019';");
+		wpe.executeScript("document.getElementById('WorkPermitEndDate').value='"+WorkPermitEndDate+"';");
 		
 		Thread.sleep(1000);
 		
-		beneficiaryMyProfilePageObj.workPermitNumber_WorkVisaSetting.sendKeys("123456");
+		beneficiaryMyProfilePageObj.workPermitNumber_WorkVisaSetting.sendKeys(WorkPermitNumber);
 		
 		Thread.sleep(1000);		
 		beneficiaryMyProfilePageObj.visaStartDate_WorkVisaSetting.click();
 		JavascriptExecutor vsd = (JavascriptExecutor) driver;
-		vsd.executeScript("document.getElementById('VisaStartDate').value='02/01/2018';");
+		vsd.executeScript("document.getElementById('VisaStartDate').value='"+VisaStartDate+"';");
 		
 		Thread.sleep(1000);		
 		beneficiaryMyProfilePageObj.visaEndDate_WorkVisaSetting.click();
 		JavascriptExecutor vse = (JavascriptExecutor) driver;
-		vse.executeScript("document.getElementById('VisaEndDate').value='02/01/2019';");
+		vse.executeScript("document.getElementById('VisaEndDate').value='"+VisaEndDate+"';");
 		
 		Thread.sleep(1000);		
 		beneficiaryMyProfilePageObj.deregistrationDate_WorkVisaSetting.click();
 		JavascriptExecutor drd = (JavascriptExecutor) driver;
-		drd.executeScript("document.getElementById('TDeregistrationDate').value='02/01/2019';");
+		drd.executeScript("document.getElementById('TDeregistrationDate').value='"+DeregistrationDate+"';");
 		
 		Thread.sleep(1000);
 		
 		beneficiaryMyProfilePageObj.remarks_WorkVisaSetting.click();
-		beneficiaryMyProfilePageObj.remarks_WorkVisaSetting.sendKeys("remarks");
+		beneficiaryMyProfilePageObj.remarks_WorkVisaSetting.sendKeys(AdditionalInformation);
 		
 		Thread.sleep(1000);
 		
 		//beneficiaryMyProfilePageObj.saveBtn_WorkVisaSetting.click();
 		
+		Thread.sleep(2000);
+		
+		wait.until(ExpectedConditions.invisibilityOf(driver.findElement(By.xpath("//div[contains(@id,'toast-container')]"))));
+		
+		loginObj.logOut();
+		
 	}
 	
-	@Test(enabled=true, priority = 7)
-	public void createTravel() throws InterruptedException {
+	@Test(enabled=false,dataProvider="createTravel",dataProviderClass=createBeneficiaryTravelData.class , priority = 7)
+	public void createTravel(String Country,String Company,String VisaType,String VisaDescription,String Dateoftravel,String DateofDeparture,String DeregistrationDate,String AdditionalInformation
+) throws InterruptedException {
 		
 		driver = Browser.startBrowser("chrome", appURL);
+		
+		WebDriverWait wait = new WebDriverWait(driver, 30);
 
 		Login loginObj = new Login(driver);
 
@@ -525,50 +609,57 @@ public class beneficiaryInformationSheet {
 		Thread.sleep(1500);
 		
 		Actions country = new Actions(driver);
-		country.moveToElement(beneficiaryMyProfilePageObj.countryDropDown_travelSetting).click().sendKeys("india",Keys.ARROW_DOWN,Keys.ENTER).build().perform();
+		country.moveToElement(beneficiaryMyProfilePageObj.countryDropDown_travelSetting).click().sendKeys(Country,Keys.ARROW_DOWN,Keys.ENTER).build().perform();
 		
 		Thread.sleep(1000);
 		
-		beneficiaryMyProfilePageObj.company_travelSetting.sendKeys("compnay");
+		beneficiaryMyProfilePageObj.company_travelSetting.sendKeys(Company);
 		
 		Actions visaType = new Actions(driver);
-		visaType.moveToElement(beneficiaryMyProfilePageObj.visaType_travelSetting).click().sendKeys("other",Keys.ARROW_DOWN,Keys.ENTER).build().perform();
+		visaType.moveToElement(beneficiaryMyProfilePageObj.visaType_travelSetting).click().sendKeys(VisaType,Keys.ARROW_DOWN,Keys.ENTER).build().perform();
 		
 		Thread.sleep(1500);
 		
-		beneficiaryMyProfilePageObj.visaDescription_travelSetting.sendKeys("visa description");
+		beneficiaryMyProfilePageObj.visaDescription_travelSetting.sendKeys(VisaDescription);
 		
 		Thread.sleep(1000);		
 		beneficiaryMyProfilePageObj.dateOfTravel_travelSetting.click();
 		JavascriptExecutor dot = (JavascriptExecutor) driver;
-		dot.executeScript("document.getElementById('TDateOfTravel').value='02/01/2018';");
+		dot.executeScript("document.getElementById('TDateOfTravel').value='"+Dateoftravel+"';");
 		
 		Thread.sleep(1000);		
 		beneficiaryMyProfilePageObj.dateOfDeparture_travelSetting.click();
 		JavascriptExecutor dod = (JavascriptExecutor) driver;
-		dod.executeScript("document.getElementById('TDateOfDepature').value='02/01/2019';");
+		dod.executeScript("document.getElementById('TDateOfDepature').value='"+DateofDeparture+"';");
 		
 		Thread.sleep(1000);		
 		beneficiaryMyProfilePageObj.deregistrationDate_travelSetting.click();
 		JavascriptExecutor drd = (JavascriptExecutor) driver;
-		drd.executeScript("document.getElementById('TDeregistrationDate').value='02/02/2019';");
+		drd.executeScript("document.getElementById('TDeregistrationDate').value='"+DeregistrationDate+"';");
 		
 		Thread.sleep(1000);
 		
 		beneficiaryMyProfilePageObj.remarks_travelSetting.click();
-		beneficiaryMyProfilePageObj.remarks_travelSetting.sendKeys("remarks");
+		beneficiaryMyProfilePageObj.remarks_travelSetting.sendKeys(AdditionalInformation);
 		
 		Thread.sleep(1000);
 		
 		//beneficiaryMyProfilePageObj.saveBtn_travelSetting.click();
 		
+		Thread.sleep(2000);
 		
+		wait.until(ExpectedConditions.invisibilityOf(driver.findElement(By.xpath("//div[contains(@id,'toast-container')]"))));
+		
+		loginObj.logOut();
+			
 	}
 	
-	@Test(enabled=true, priority = 8)
-	public void createImmigration() throws InterruptedException {
+	@Test(enabled=false,dataProvider="createImmigration",dataProviderClass= createBeneficiaryImmigrationData.class, priority = 8)
+	public void createImmigration(String Country,String Company,String VisaType,String VisaDescription,String AntecedentDescription,String DateofTravel) throws InterruptedException {
 		driver = Browser.startBrowser("chrome", appURL);
 
+		WebDriverWait wait = new WebDriverWait(driver, 30);
+		
 		Login loginObj = new Login(driver);
 
 		loginObj.beneficiaryLogin();
@@ -595,27 +686,27 @@ public class beneficiaryInformationSheet {
 		Thread.sleep(2000);
 		
 		Actions country = new Actions(driver);
-		country.moveToElement(beneficiaryMyProfilePageObj.countryDropDown_ImmigrationSetting).click().sendKeys("india",Keys.ARROW_DOWN,Keys.ENTER).build().perform();
+		country.moveToElement(beneficiaryMyProfilePageObj.countryDropDown_ImmigrationSetting).click().sendKeys(Country,Keys.ARROW_DOWN,Keys.ENTER).build().perform();
 		
 		Thread.sleep(1000);
 				
-		beneficiaryMyProfilePageObj.company_ImmigrationSetting.sendKeys("company");
+		beneficiaryMyProfilePageObj.company_ImmigrationSetting.sendKeys(Company);
 		
 		Thread.sleep(1000);
 		
 		Actions visaType = new Actions(driver);
-		visaType.moveToElement(beneficiaryMyProfilePageObj.visaType_ImmigrationSetting).click().sendKeys("other",Keys.ARROW_DOWN,Keys.ENTER).build().perform();
+		visaType.moveToElement(beneficiaryMyProfilePageObj.visaType_ImmigrationSetting).click().sendKeys(VisaType,Keys.ARROW_DOWN,Keys.ENTER).build().perform();
 		
 		Thread.sleep(1000);
 		
-		beneficiaryMyProfilePageObj.visaDescription_ImmigrationSetting.sendKeys("visa description");
+		beneficiaryMyProfilePageObj.visaDescription_ImmigrationSetting.sendKeys(VisaDescription);
 		
-		beneficiaryMyProfilePageObj.antecedentDetails_ImmigrationSetting.sendKeys("antecedent details");
+		beneficiaryMyProfilePageObj.antecedentDetails_ImmigrationSetting.sendKeys(AntecedentDescription);
 		
 		Thread.sleep(1000);		
 		beneficiaryMyProfilePageObj.dateOfTravel_ImmigrationSetting.click();
 		JavascriptExecutor drd = (JavascriptExecutor) driver;
-		drd.executeScript("document.getElementById('DDateOfTravel').value='02/02/2019';");
+		drd.executeScript("document.getElementById('DDateOfTravel').value='"+DateofTravel+"';");
 		
 		Thread.sleep(1000);
 		
@@ -624,12 +715,21 @@ public class beneficiaryInformationSheet {
 		Thread.sleep(1000);
 		
 		//beneficiaryMyProfilePageObj.saveBtn_ImmigrationSetting.click();
+		
+		Thread.sleep(2000);
+		
+		wait.until(ExpectedConditions.invisibilityOf(driver.findElement(By.xpath("//div[contains(@id,'toast-container')]"))));
+		
+		loginObj.logOut();
 			
 	}
 	
-	@Test(enabled=true, priority = 9)
-	public void createExperience() throws InterruptedException {
+	@Test(enabled=false, dataProvider="createExperience",dataProviderClass= createBeneficiaryExperienceData.class,priority = 9)
+	public void createExperience(String Employeenumber,String Designation,String CompanyName,String CompanyAddress,String CompanyPhoneNumber,
+			String WorkFrom,String WorkTo,String Reasonforleaving,String LastDrawnSalary) throws InterruptedException {
 		driver = Browser.startBrowser("chrome", appURL);
+		
+		WebDriverWait wait = new WebDriverWait(driver, 30);
 
 		Login loginObj = new Login(driver);
 
@@ -656,30 +756,30 @@ public class beneficiaryInformationSheet {
 		
 		Thread.sleep(1500);
 		
-		beneficiaryMyProfilePageObj.employeeNo_ExperienceSetting.sendKeys("123456");
+		beneficiaryMyProfilePageObj.employeeNo_ExperienceSetting.sendKeys(Employeenumber);
 		
-		beneficiaryMyProfilePageObj.designation_ExperienceSetting.sendKeys("software engineer");
+		beneficiaryMyProfilePageObj.designation_ExperienceSetting.sendKeys(Designation);
 		
-		beneficiaryMyProfilePageObj.companyName_ExperienceSetting.sendKeys("company name");
+		beneficiaryMyProfilePageObj.companyName_ExperienceSetting.sendKeys(CompanyName);
 		
-		beneficiaryMyProfilePageObj.companyAddress_ExperienceSetting.sendKeys("company address");
+		beneficiaryMyProfilePageObj.companyAddress_ExperienceSetting.sendKeys(CompanyAddress);
 		
-		beneficiaryMyProfilePageObj.companyPhoneNo_ExperienceSetting.sendKeys("1234567890");
+		beneficiaryMyProfilePageObj.companyPhoneNo_ExperienceSetting.sendKeys(CompanyPhoneNumber);
 		
 		Thread.sleep(1000);		
 		beneficiaryMyProfilePageObj.workFrom_ExperienceSetting.click();
 		JavascriptExecutor wf = (JavascriptExecutor) driver;
-		wf.executeScript("document.getElementById('WorkFrom').value='02/02/2017';");
+		wf.executeScript("document.getElementById('WorkFrom').value='"+WorkFrom+"';");
 		
 		Thread.sleep(1000);		
 		beneficiaryMyProfilePageObj.workTo_ExperienceSetting.click();
 		JavascriptExecutor wt = (JavascriptExecutor) driver;
-		wt.executeScript("document.getElementById('WorkTo').value='02/02/2018';");
+		wt.executeScript("document.getElementById('WorkTo').value='"+WorkTo+"';");
 				
-		beneficiaryMyProfilePageObj.reasonForLeaving_ExperienceSetting.sendKeys("reason for leaving");
+		beneficiaryMyProfilePageObj.reasonForLeaving_ExperienceSetting.sendKeys(Reasonforleaving);
 		
 		beneficiaryMyProfilePageObj.lastDrawnSalary_ExperienceSetting.click();
-		beneficiaryMyProfilePageObj.lastDrawnSalary_ExperienceSetting.sendKeys("123456");
+		beneficiaryMyProfilePageObj.lastDrawnSalary_ExperienceSetting.sendKeys(LastDrawnSalary);
 		
 		Thread.sleep(1000);
 		
@@ -689,10 +789,25 @@ public class beneficiaryInformationSheet {
 		Thread.sleep(1000);
 		
 		//beneficiaryMyProfilePageObj.saveBtn_ExperienceSetting.click();
+		
+		Thread.sleep(2000);
+		
+		wait.until(ExpectedConditions.invisibilityOf(driver.findElement(By.xpath("//div[contains(@id,'toast-container')]"))));
+		
+		loginObj.logOut();
 			
 	}
 	
+	
+	@AfterMethod(enabled = true)
+	public void clean() {
+		driver.close();
+		driver.quit();
+	}
+	
+	//***************************************************************************************************************
 
+	
 	public static void selectDate(WebDriver driver, String YYYY, String MMM, String DD) throws InterruptedException {
 
 		driver.findElement(By.xpath("//div[@class='datepicker-days']//th[@class='datepicker-switch']")).click();
@@ -842,6 +957,8 @@ public class beneficiaryInformationSheet {
 
 	}
 
+
+
 	@Test(enabled = false)
 	public void test1() throws InterruptedException {
 
@@ -937,7 +1054,7 @@ public class beneficiaryInformationSheet {
 	}
 	
 	@Test(enabled=false) 
-	public void createPassport() throws InterruptedException {
+	public void createPassport1() throws InterruptedException {
 		driver = Browser.startBrowser("chrome", appURL);
 
 		driver.findElement(By.name("UserName")).sendKeys("santosh@auto5.com");

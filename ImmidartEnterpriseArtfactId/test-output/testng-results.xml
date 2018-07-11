@@ -1,45 +1,472 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results skipped="0" failed="0" total="9" passed="9">
+<testng-results skipped="0" failed="0" total="8" passed="8">
   <reporter-output>
   </reporter-output>
-  <suite name="Default suite" duration-ms="248673" started-at="2018-07-06T14:25:40Z" finished-at="2018-07-06T14:29:49Z">
+  <suite name="Default suite" duration-ms="225150" started-at="2018-07-11T12:08:47Z" finished-at="2018-07-11T12:12:32Z">
     <groups>
     </groups>
-    <test name="Default test" duration-ms="248673" started-at="2018-07-06T14:25:40Z" finished-at="2018-07-06T14:29:49Z">
+    <test name="Default test" duration-ms="225150" started-at="2018-07-11T12:08:47Z" finished-at="2018-07-11T12:12:32Z">
       <class name="beneficiary.beneficiaryInformationSheet">
-        <test-method status="PASS" signature="createOrganization()[pri:1, instance:beneficiary.beneficiaryInformationSheet@1d057a39]" name="createOrganization" duration-ms="31168" started-at="2018-07-06T19:55:40Z" finished-at="2018-07-06T19:56:11Z">
+        <test-method status="PASS" signature="createOrganization(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String)[pri:1, instance:beneficiary.beneficiaryInformationSheet@523884b2]" name="createOrganization" duration-ms="31184" started-at="2018-07-11T17:38:47Z" data-provider="createOrganization" finished-at="2018-07-11T17:39:18Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[OCBand]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[Current Designation]]>
+              </value>
+            </param>
+            <param index="2">
+              <value>
+                <![CDATA[Oname]]>
+              </value>
+            </param>
+            <param index="3">
+              <value>
+                <![CDATA[Ocode]]>
+              </value>
+            </param>
+            <param index="4">
+              <value>
+                <![CDATA[Division]]>
+              </value>
+            </param>
+            <param index="5">
+              <value>
+                <![CDATA[Sub Division]]>
+              </value>
+            </param>
+            <param index="6">
+              <value>
+                <![CDATA[Business Division]]>
+              </value>
+            </param>
+            <param index="7">
+              <value>
+                <![CDATA[Business Sub Division]]>
+              </value>
+            </param>
+            <param index="8">
+              <value>
+                <![CDATA[Domain]]>
+              </value>
+            </param>
+            <param index="9">
+              <value>
+                <![CDATA[1/1/2018]]>
+              </value>
+            </param>
+            <param index="10">
+              <value>
+                <![CDATA[12]]>
+              </value>
+            </param>
+            <param index="11">
+              <value>
+                <![CDATA[24]]>
+              </value>
+            </param>
+            <param index="12">
+              <value>
+                <![CDATA[36]]>
+              </value>
+            </param>
+            <param index="13">
+              <value>
+                <![CDATA[9898989898]]>
+              </value>
+            </param>
+            <param index="14">
+              <value>
+                <![CDATA[Current Work Location]]>
+              </value>
+            </param>
+            <param index="15">
+              <value>
+                <![CDATA[Current Work Address]]>
+              </value>
+            </param>
+            <param index="16">
+              <value>
+                <![CDATA[NA]]>
+              </value>
+            </param>
+            <param index="17">
+              <value>
+                <![CDATA[reportingmanager@email.com]]>
+              </value>
+            </param>
+          </params>
           <reporter-output>
           </reporter-output>
         </test-method> <!-- createOrganization -->
-        <test-method status="PASS" signature="createPersonalInformation()[pri:2, instance:beneficiary.beneficiaryInformationSheet@1d057a39]" name="createPersonalInformation" duration-ms="26590" started-at="2018-07-06T19:56:11Z" finished-at="2018-07-06T19:56:38Z">
+        <test-method status="PASS" signature="createPersonalInformation(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String)[pri:2, instance:beneficiary.beneficiaryInformationSheet@523884b2]" name="createPersonalInformation" duration-ms="26374" started-at="2018-07-11T17:39:18Z" data-provider="createPersonal" finished-at="2018-07-11T17:39:45Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[Fname]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[Mname]]>
+              </value>
+            </param>
+            <param index="2">
+              <value>
+                <![CDATA[Lname]]>
+              </value>
+            </param>
+            <param index="3">
+              <value>
+                <![CDATA[10/10/1991]]>
+              </value>
+            </param>
+            <param index="4">
+              <value>
+                <![CDATA[Place of Birth]]>
+              </value>
+            </param>
+            <param index="5">
+              <value>
+                <![CDATA[India]]>
+              </value>
+            </param>
+            <param index="6">
+              <value>
+                <![CDATA[Karnataka]]>
+              </value>
+            </param>
+            <param index="7">
+              <value>
+                <![CDATA[Single]]>
+              </value>
+            </param>
+            <param index="8">
+              <value>
+                <![CDATA[per@email.com]]>
+              </value>
+            </param>
+            <param index="9">
+              <value>
+                <![CDATA[alt@email.com]]>
+              </value>
+            </param>
+            <param index="10">
+              <value>
+                <![CDATA[9595959595]]>
+              </value>
+            </param>
+            <param index="11">
+              <value>
+                <![CDATA[9696969696]]>
+              </value>
+            </param>
+            <param index="12">
+              <value>
+                <![CDATA[Male]]>
+              </value>
+            </param>
+          </params>
           <reporter-output>
           </reporter-output>
         </test-method> <!-- createPersonalInformation -->
-        <test-method status="PASS" signature="createAddress()[pri:3, instance:beneficiary.beneficiaryInformationSheet@1d057a39]" name="createAddress" duration-ms="30053" started-at="2018-07-06T19:56:38Z" finished-at="2018-07-06T19:57:08Z">
+        <test-method status="PASS" signature="createAddress(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String)[pri:3, instance:beneficiary.beneficiaryInformationSheet@523884b2]" name="createAddress" duration-ms="30079" started-at="2018-07-11T17:39:45Z" data-provider="createAddress" finished-at="2018-07-11T17:40:15Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[Address Line 1]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[Address Line 2]]>
+              </value>
+            </param>
+            <param index="2">
+              <value>
+                <![CDATA[India]]>
+              </value>
+            </param>
+            <param index="3">
+              <value>
+                <![CDATA[Karnataka]]>
+              </value>
+            </param>
+            <param index="4">
+              <value>
+                <![CDATA[Bangalore]]>
+              </value>
+            </param>
+            <param index="5">
+              <value>
+                <![CDATA[123456]]>
+              </value>
+            </param>
+            <param index="6">
+              <value>
+                <![CDATA[Yes]]>
+              </value>
+            </param>
+            <param index="7">
+              <value>
+                <![CDATA[Yes]]>
+              </value>
+            </param>
+          </params>
           <reporter-output>
           </reporter-output>
         </test-method> <!-- createAddress -->
-        <test-method status="PASS" signature="createQualification()[pri:4, instance:beneficiary.beneficiaryInformationSheet@1d057a39]" name="createQualification" duration-ms="23131" started-at="2018-07-06T19:57:08Z" finished-at="2018-07-06T19:57:31Z">
+        <test-method status="PASS" signature="createPassport(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String)[pri:5, instance:beneficiary.beneficiaryInformationSheet@523884b2]" name="createPassport" duration-ms="25262" started-at="2018-07-11T17:40:15Z" data-provider="createPassport" finished-at="2018-07-11T17:40:40Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[19193737]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[Surname]]>
+              </value>
+            </param>
+            <param index="2">
+              <value>
+                <![CDATA[Given Name]]>
+              </value>
+            </param>
+            <param index="3">
+              <value>
+                <![CDATA[Indian]]>
+              </value>
+            </param>
+            <param index="4">
+              <value>
+                <![CDATA[Bangalore]]>
+              </value>
+            </param>
+            <param index="5">
+              <value>
+                <![CDATA[1/1/2018]]>
+              </value>
+            </param>
+            <param index="6">
+              <value>
+                <![CDATA[1/1/2020]]>
+              </value>
+            </param>
+            <param index="7">
+              <value>
+                <![CDATA[No]]>
+              </value>
+            </param>
+            <param index="8">
+              <value>
+                <![CDATA[Yes]]>
+              </value>
+            </param>
+          </params>
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- createQualification -->
-        <test-method status="PASS" signature="createPassport1()[pri:5, instance:beneficiary.beneficiaryInformationSheet@1d057a39]" name="createPassport1" duration-ms="25278" started-at="2018-07-06T19:57:31Z" finished-at="2018-07-06T19:57:56Z">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- createPassport1 -->
-        <test-method status="PASS" signature="createWorkVisa()[pri:6, instance:beneficiary.beneficiaryInformationSheet@1d057a39]" name="createWorkVisa" duration-ms="32959" started-at="2018-07-06T19:57:56Z" finished-at="2018-07-06T19:58:29Z">
+        </test-method> <!-- createPassport -->
+        <test-method status="PASS" signature="createWorkVisa(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String)[pri:6, instance:beneficiary.beneficiaryInformationSheet@523884b2]" name="createWorkVisa" duration-ms="32692" started-at="2018-07-11T17:40:40Z" data-provider="createWorkVisa" finished-at="2018-07-11T17:41:13Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[India]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[Sponsorer]]>
+              </value>
+            </param>
+            <param index="2">
+              <value>
+                <![CDATA[Other]]>
+              </value>
+            </param>
+            <param index="3">
+              <value>
+                <![CDATA[Visa Description]]>
+              </value>
+            </param>
+            <param index="4">
+              <value>
+                <![CDATA[Active]]>
+              </value>
+            </param>
+            <param index="5">
+              <value>
+                <![CDATA[1/1/2018]]>
+              </value>
+            </param>
+            <param index="6">
+              <value>
+                <![CDATA[1/1/2020]]>
+              </value>
+            </param>
+            <param index="7">
+              <value>
+                <![CDATA[123654]]>
+              </value>
+            </param>
+            <param index="8">
+              <value>
+                <![CDATA[1/1/2018]]>
+              </value>
+            </param>
+            <param index="9">
+              <value>
+                <![CDATA[1/1/2020]]>
+              </value>
+            </param>
+            <param index="10">
+              <value>
+                <![CDATA[1/1/2019]]>
+              </value>
+            </param>
+            <param index="11">
+              <value>
+                <![CDATA[Additional Information]]>
+              </value>
+            </param>
+          </params>
           <reporter-output>
           </reporter-output>
         </test-method> <!-- createWorkVisa -->
-        <test-method status="PASS" signature="createTravel()[pri:7, instance:beneficiary.beneficiaryInformationSheet@1d057a39]" name="createTravel" duration-ms="28856" started-at="2018-07-06T19:58:29Z" finished-at="2018-07-06T19:58:58Z">
+        <test-method status="PASS" signature="createTravel(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String)[pri:7, instance:beneficiary.beneficiaryInformationSheet@523884b2]" name="createTravel" duration-ms="27763" started-at="2018-07-11T17:41:13Z" data-provider="createTravel" finished-at="2018-07-11T17:41:40Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[India]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[Company]]>
+              </value>
+            </param>
+            <param index="2">
+              <value>
+                <![CDATA[Other]]>
+              </value>
+            </param>
+            <param index="3">
+              <value>
+                <![CDATA[Visa Description]]>
+              </value>
+            </param>
+            <param index="4">
+              <value>
+                <![CDATA[1/1/2019]]>
+              </value>
+            </param>
+            <param index="5">
+              <value>
+                <![CDATA[1/1/2020]]>
+              </value>
+            </param>
+            <param index="6">
+              <value>
+                <![CDATA[1/1/2021]]>
+              </value>
+            </param>
+            <param index="7">
+              <value>
+                <![CDATA[Additional Information]]>
+              </value>
+            </param>
+          </params>
           <reporter-output>
           </reporter-output>
         </test-method> <!-- createTravel -->
-        <test-method status="PASS" signature="createImmigration()[pri:8, instance:beneficiary.beneficiaryInformationSheet@1d057a39]" name="createImmigration" duration-ms="26929" started-at="2018-07-06T19:58:58Z" finished-at="2018-07-06T19:59:25Z">
+        <test-method status="PASS" signature="createImmigration(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String)[pri:8, instance:beneficiary.beneficiaryInformationSheet@523884b2]" name="createImmigration" duration-ms="26696" started-at="2018-07-11T17:41:40Z" data-provider="createImmigration" finished-at="2018-07-11T17:42:07Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[India]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[Company]]>
+              </value>
+            </param>
+            <param index="2">
+              <value>
+                <![CDATA[Other]]>
+              </value>
+            </param>
+            <param index="3">
+              <value>
+                <![CDATA[Visa Description]]>
+              </value>
+            </param>
+            <param index="4">
+              <value>
+                <![CDATA[Antecedent Description]]>
+              </value>
+            </param>
+            <param index="5">
+              <value>
+                <![CDATA[1/1/2019]]>
+              </value>
+            </param>
+          </params>
           <reporter-output>
           </reporter-output>
         </test-method> <!-- createImmigration -->
-        <test-method status="PASS" signature="createExperience()[pri:9, instance:beneficiary.beneficiaryInformationSheet@1d057a39]" name="createExperience" duration-ms="23690" started-at="2018-07-06T19:59:25Z" finished-at="2018-07-06T19:59:49Z">
+        <test-method status="PASS" signature="createExperience(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String)[pri:9, instance:beneficiary.beneficiaryInformationSheet@523884b2]" name="createExperience" duration-ms="24754" started-at="2018-07-11T17:42:07Z" data-provider="createExperience" finished-at="2018-07-11T17:42:32Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[12346]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[Designaion]]>
+              </value>
+            </param>
+            <param index="2">
+              <value>
+                <![CDATA[Company Name]]>
+              </value>
+            </param>
+            <param index="3">
+              <value>
+                <![CDATA[Company Address]]>
+              </value>
+            </param>
+            <param index="4">
+              <value>
+                <![CDATA[9632587410]]>
+              </value>
+            </param>
+            <param index="5">
+              <value>
+                <![CDATA[1/1/2017]]>
+              </value>
+            </param>
+            <param index="6">
+              <value>
+                <![CDATA[1/1/2018]]>
+              </value>
+            </param>
+            <param index="7">
+              <value>
+                <![CDATA[Reason for leaving]]>
+              </value>
+            </param>
+            <param index="8">
+              <value>
+                <![CDATA[123465]]>
+              </value>
+            </param>
+          </params>
           <reporter-output>
           </reporter-output>
         </test-method> <!-- createExperience -->
